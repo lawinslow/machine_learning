@@ -7,22 +7,37 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Welcome
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+These are the preparation and teaching material website for the GLEON 19 meeting Machine Learning
+workshop. 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## Setting up R
 
-```{r cars}
-summary(cars)
-```
+First, we need to setup R and an editor for you. For R there is really no choice. For an R editor
+there are many, but the most common to use is RStudio. 
 
-## Including Plots
+Steps: 
 
-You can also embed plots, for example:
+1. [Download the latest version of R if you don't already have it](https://cran.r-project.org/). Install it. 
+2. [Download the latest version of RStudio if you don't have it](https://www.rstudio.com/products/rstudio/download/#download).
+Install it. 
+3. Verify that you can run RStudio. 
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Get the Workshop Example Materials
+
+The workshop example scripts and data have been provided to make it 
+easier to follow along with the instructor. [Download the most recent
+materials here](https://github.com/lawinslow/machine_learning/archive/master.zip). 
+Once downloaded, unzip the contents and put the folder somewhere easily accessible. 
+
+
+## Installing Needed Packages
+
+We will use a wide variety of R packages today during the workshop. They will take a little bit of time 
+to download and install, so go ahead and do that whenever you are ready. 
+
+
+
