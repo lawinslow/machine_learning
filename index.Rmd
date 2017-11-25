@@ -1,6 +1,8 @@
 ---
 title: "G19 Machine Learning Workshop"
 output: html_document
+author:
+- Ken Chiu, Luke Winslow, Taylor Leach
 ---
 
 ```{r setup, include=FALSE}
@@ -37,7 +39,40 @@ Once downloaded, unzip the contents and put the folder somewhere easily accessib
 ## Installing Needed Packages
 
 We will use a wide variety of R packages today during the workshop. They will take a little bit of time 
-to download and install, so go ahead and do that whenever you are ready. 
+to download and install, so go ahead and do that whenever you are ready. The core packages we will need 
+are `dplyr, ggplot2, rLakeAnalyzer, randomForest, neuralnet, e1071`. The code below will download and 
+install all of those core packages. Please copy-paste this code into your R console and run. 
+
+```{r, eval=FALSE, echo=TRUE}
+
+install.packages(c('dplyr', 'ggplot2', 'rLakeAnalyzer', 'randomForest', 'neuralnet', 'e1071'))
 
 
+```
+
+## Workshop Agenda
+
+8:30 - 9:00 Get data and packages loaded
+
+9:00 - 9:30 Opening Remarks and introduction to machine learning
+
+9:30 - 10:30 Main course: Cluster Analysis
+
+10:30 - 10:50 BREAK
+
+10:50 - 11:50 Main course: Support Vector Machines
+
+11:50 - 12:00 Organize breakout groups and break for lunch
+
+12:00 - 13:30 Lunch (Please discuss and brainstorm over lunch)
+
+13:30 - 13:50 Breakout groups with application brainstorming sessions
+
+13:50 - 14:50 Main course: Random Forests
+
+14:50 - 15:00 BREAK
+
+15:00 - 16:00 Main course: Neural Networks
+
+16:00 - 16:30 Breakout groups with application brainstorming sessions with final report back
 
