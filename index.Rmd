@@ -11,8 +11,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Welcome
 
-These are the preparation and teaching material website for the GLEON 19 meeting Machine Learning
+This is the preparation and teaching material website for the GLEON 19 Machine Learning
 workshop. 
+
+---
 
 ## Setting up R
 
@@ -24,16 +26,9 @@ Steps:
 1. [Download the latest version of R if you don't already have it](https://cran.r-project.org/). Install it. 
 2. [Download the latest version of RStudio if you don't have it](https://www.rstudio.com/products/rstudio/download/#download).
 Install it. 
-3. Verify that you can run RStudio. 
+3. Verify that you can run RStudio. It should look something like the image below. 
 
-
-
-## Get the Workshop Example Materials
-
-The workshop example scripts and data have been provided to make it 
-easier to follow along with the instructor. [Download the most recent
-materials here](https://github.com/lawinslow/machine_learning/archive/master.zip). 
-Once downloaded, unzip the contents and put the folder somewhere easily accessible. 
+![RStudio Interface](img/rstudio.PNG)
 
 
 ## Installing Needed Packages
@@ -49,6 +44,17 @@ install.packages(c('dplyr', 'ggplot2', 'rLakeAnalyzer', 'randomForest', 'neuraln
 
 
 ```
+
+
+---
+
+## Get the Workshop Example Materials
+
+The workshop example scripts and data have been provided to make it 
+easier to follow along with the instructor. [Download the most recent
+materials here](https://github.com/lawinslow/machine_learning/archive/master.zip). 
+Once downloaded, unzip the contents and put the folder somewhere easily accessible. 
+
 
 ## Workshop Agenda
 
