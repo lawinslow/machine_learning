@@ -12,6 +12,7 @@ lulc  = readnlafile('extdata/nla2007/NLA2007_Basin_Landuse_Metrics_20061022.csv'
 wq    = readnlafile('extdata/nla2007/NLA2007_WaterQuality_20091123.csv')
 secchi = readnlafile('extdata/nla2007/NLA2007_Secchi_20091008.csv')
 prof = readnlafile('extdata/nla2007/NLA2007_Profile_20091008.csv')
+visual = readnlafile('extdata/nla2007/NLA2007_VisualAssessment_20091015.csv')
 site = readnlafile('extdata/nla2007/NLA2007_SampledLakeInformation_20091113.csv')
 
 
@@ -36,8 +37,12 @@ prof_deep   = prof %>% select(SITE_ID, VISIT_NO, DEPTH, TEMP_FIELD, DO_FIELD, CO
   group_by(SITE_ID, VISIT_NO) %>% slice(which.max(DEPTH)) %>% 
   rename(DEPTH_BOT=DEPTH, TEMP_BOT=TEMP_FIELD, DO_BOT=DO_FIELD, COND_BOT=COND_FIELD, PH_BOT=PH_FIELD)
 
+visual_thin = visual %>% select(SITE_ID, VISIT_NO, TROPHIC_STATE, RECREATIONAL_VALUE, BIOTIC_INTEGRITY, HYDRO_TYPE, 
+                                OUTLET_DAMS, SWIMMABILITY, MBOAT_DENSITY)
 
-big_table = plyr::join_all(list(tox_thin, lulc_thin, secchi_thin, site_thin, wq_thin, prof_surf, prof_deep), by=c('SITE_ID', 'VISIT_NO')) 
+### Join all of these tables together
+
+big_table = plyr::join_all(list(tox_thin, lulc_thin, secchi_thin, site_thin, wq_thin, prof_surf, prof_deep, visual_thin), by=c('SITE_ID', 'VISIT_NO')) 
 big_table = filter(big_table, VISIT_NO==1)
 
 ### selectively cut out very redundant fields
