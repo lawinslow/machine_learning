@@ -40,7 +40,7 @@ install all of those core packages. Please copy-paste this code into your R cons
 
 ```{r, eval=FALSE, echo=TRUE}
 
-install.packages(c('dplyr', 'ggplot2', 'rLakeAnalyzer', 'randomForest', 'neuralnet', 'e1071'))
+install.packages(c('dplyr', 'ggplot2', 'rLakeAnalyzer', 'randomForest', 'neuralnet', 'e1071', 'caret'))
 
 
 ```
