@@ -1,29 +1,65 @@
-library(neuralnet)
-library(e1071)
+library(dplyr)
+library(neuralnet) 
+#other useful NN packages: RSNNS, NeuralNetTools, nnet, H2O, DARCH, deepnet and mxnet
+#if you want to go all-in, https://tensorflow.rstudio.com/
 
+
+
+###############################################################################
+# Load and prep data
+###############################################################################
+big_table = read.csv('data/g19_2007_bigtable.csv', as.is=TRUE)
+
+# First, we'll remove all categorial data
 num_data = big_table[, sapply(big_table, class) %in% c('integer', 'numeric')]
 full_data = na.omit(num_data)
 
-n  = names(full_data)
-f  = as.formula(paste("MCYST_TL_UGL ~", paste(n[!n %in% "MCYST_TL_UGL"], collapse = " + ")))
-nn = neuralnet(f, data=full_data, linear.output=T, hidden=c(20, 5))
+## data for the NN needs to be noramlized. Use `scale`
+scale_data = as.data.frame(scale(full_data))
+scale_data$VISIT_NO = NULL  #Dropping this variable. Not informative
+
+###############################################################################
+# Build model and run neural network
+###############################################################################
+
+train_i = sample(1:nrow(scale_data), floor(nrow(scale_data)/2))
+
+train = scale_data[train_i,]
+test  = scale_data[-train_i,]
+
+n  = names(train)
+f  = as.formula(paste("DOC ~", paste(n[!n %in% "DOC"], collapse = " + ")))
+
+nn = neuralnet(f, data=train, linear.output=T, hidden=c(15, 4))
+
+pr.nn = compute(nn, select(test, -DOC))
+
+RMSE(pr.nn$net.result, test$DOC)
+
+plot(pr.nn$net.result, test$DOC, log='xy')
 
 
-pr.nn <- compute(nn,test_[,1:13])
+###############################################################################
+# k-fold cross validation (takes a while to run)
+###############################################################################
 
-pr.nn_ <- pr.nn$net.result*(max(data$medv)-min(data$medv))+min(data$medv)
-test.r <- (test_$medv)*(max(data$medv)-min(data$medv))+min(data$medv)
+k=10
+errs = rep(NA, k)
+for(i in 1:k){
+  train_i = sample(1:nrow(scale_data), floor(nrow(scale_data)*(k-1)/k))
+  
+  train = scale_data[train_i,]
+  test  = scale_data[-train_i,]
+  
+  n  = names(train)
+  f  = as.formula(paste("DOC ~", paste(n[!n %in% "DOC"], collapse = " + ")))
+  
+  nn = neuralnet(f, data=train, linear.output=T, hidden=c(15, 4))
+  
+  pr.nn = compute(nn, select(test, -DOC))
+  
+  errs[i] = RMSE(pr.nn$net.result, test$DOC)
+}
 
-MSE.nn <- sum((test.r - pr.nn_)^2)/nrow(test_)
+boxplot(errs)
 
-print(paste(MSE.lm,MSE.nn))
-
-par(mfrow=c(1,2))
-
-plot(test$medv,pr.nn_,col='red',main='Real vs predicted NN',pch=18,cex=0.7)
-abline(0,1,lwd=2)
-legend('bottomright',legend='NN',pch=18,col='red', bty='n')
-
-plot(test$medv,pr.lm,col='blue',main='Real vs predicted lm',pch=18, cex=0.7)
-abline(0,1,lwd=2)
-legend('bottomright',legend='LM',pch=18,col='blue', bty='n', cex=.95)

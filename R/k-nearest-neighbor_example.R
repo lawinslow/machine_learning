@@ -5,9 +5,9 @@ library(caret)
 ###############################################################################
 # Load and prep data
 ###############################################################################
-data = read.csv('data/g19_2007_bigtable.csv', as.is=TRUE)
+d = read.csv('data/g19_2007_bigtable.csv', as.is=TRUE)
 
-trophic_info = data %>% select(TROPHIC_STATE, NTL, PTL, CHLA, TURB, DO_SURF, DOC) %>%
+trophic_info = d %>% select(TROPHIC_STATE, NTL, PTL, CHLA, TURB, DO_SURF, DOC) %>%
   filter(TROPHIC_STATE != '') %>% na.omit
 trophic_info$TROPHIC_STATE = factor(trophic_info$TROPHIC_STATE)
 
