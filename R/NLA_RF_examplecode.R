@@ -7,7 +7,7 @@ library(randomForest)
 ###############################################################################
 # read in data 
 ###############################################################################
-dat.all = read.csv(file = "https://raw.githubusercontent.com/lawinslow/machine_learning/master/data/g19_2007_bigtable.csv")
+dat.all = read.csv(file = "data/g19_2007_bigtable.csv")
 
 # get rid of data that don't make sense (ex. lake name, site ID, categories)
 dat = select(dat.all, -SITE_ID, -VISIT_NO, -LAKENAME, -DATE_COL, -TOC
